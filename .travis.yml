@@ -39,10 +39,10 @@ script:
   - chmod a+x ~/bin/repo
   # Get the latest commits.
   - cd
-  - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
+  # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
   - cd Magisk
   # Make sure all submodules work.
-  - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
+  - repo init -u https://raw.githubusercontent.com/kantjer/magisk_manifest/master/default.xml --depth=1
   - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
