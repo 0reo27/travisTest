@@ -9,11 +9,7 @@ android:
     - tools
 
 before_script:
-  - sleep 3; echo "y" | sdkmanager --update
-  - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
-  - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
-  - sudo apt-get update
-  - sudo apt-get install -y python3.6
+  - sudo apt-get install curl
 
 env:
   global:
@@ -33,15 +29,15 @@ env:
 
 script:
   - cd
-  - git clone https://github.com/topjohnwu/Magisk.git
+  - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
   - cd Magisk
-  - git submodule update --init --recursive
-  - sleep 30
-  - cd /home/travis/Magisk/native/jni/external/selinux/libsepol
-  - ls -l
+  - curl --upload-file ./settings.gradle https://transfer.sh/settings.gradle
+  - settings.gradle
+  # - cd /home/travis/Magisk/native/jni/external/selinux/libsepol
+  # - ls -l
   # - time python3.6 ${TRAVIS_BUILD_DIR}/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-  - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-  - echo test
+  # - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  # - echo test
 
 notifications:
   email: false
