@@ -41,8 +41,10 @@ script:
   - chmod a+x ~/bin/repo
   # Get the latest commits via kanter
   - cd
-  - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
-  - cd Magisk/app
+  - mkdir Magisk
+  - cd Magisk/
+  # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
+  # - cd Magisk/app
   # Make sure all submodules work.
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
   - repo sync
