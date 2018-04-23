@@ -30,14 +30,10 @@ env:
 script:
   - cd
   - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
-  - cd Magisk
-  - curl --upload-file ./settings.gradle https://transfer.sh/settings.gradle
-  - settings.gradle
-  # - cd /home/travis/Magisk/native/jni/external/selinux/libsepol
-  # - ls -l
-  # - time python3.6 ${TRAVIS_BUILD_DIR}/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-  # - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-  # - echo test
+  - cd Magisk/app
+  # Make sure all submodules work.
+  - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
+  - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
 
 notifications:
   email: false
