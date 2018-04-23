@@ -15,6 +15,7 @@ before_script:
   - sudo apt-get update
   - sudo apt-get install -y python3.6
   - sudo apt-get install curl
+  - sudo apt-get phablet-tools
 
 env:
   global:
