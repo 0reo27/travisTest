@@ -16,7 +16,7 @@ before_script:
   - sudo apt-get update
   - sudo apt-get install -y python3.6
   - curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
-  - apt-get remove --purge python-apt
+  - sudo apt-get remove --purge python-apt
   - sudo apt-get install python-apt
 
 env:
