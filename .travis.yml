@@ -1,3 +1,4 @@
+# Most of the initial part of the script was taken from - https://github.com/TheComputerGuy96/Magisk/blob/travisci-dev/.travis.yml
 language: android
 
 dist: trusty
@@ -14,6 +15,7 @@ before_script:
   - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
   - sudo apt-get update
   - sudo apt-get install -y python3.6
+  - sudo apt-get install python-apt
 
 env:
   global:
@@ -32,12 +34,12 @@ env:
     - secure: "ZVXI+c5pdfwqGebBabpoh0iWTHH3RlYNpTkmkI2WBiFuzQjaE+bOBRU4d5enUZ18MmmtwM3/YbqG86poBQszxaEu3it1hdAwawthhn3BEO6iREe/pNZHDs/H6qFuaXJoInjfl+/VljD1ud5kVNL2VoTmtmb1cVy8+80uN5c/SHmkHkezCWjNr2r5zSkMaPEFjM6DjfeqtZ92NmkrVDlMZYW1WT/Nny0s17uYo+70TvTjIpfrvGuYdQp3ThauHGZLr9DQrMa8egRs0cq/h+Q2mWQZk28FTYLqJEWKw8AcK3ejUGhlFreQYE5w6vO+ZfrPTsMlmTA3rQZAly6Zw6SXK0Z3kR4X/oWNXWXWGmXs63Rd+2IvTgekCcO4kOx+PtbQUxiDY6YqVIvWHnG2jv95y9gA2GRAb5LjoKLZAgCuruxaC7+UPHe+MaNS1CUFQ1XMA9VxjqXdNV8QGEN9dQ771TKBIS5WmPjf58PjqZbBTR9Jr4r1HlrE4KKxssajo+3tIlwAvPte1lXO4uCzcf8zc40abGMjx75lEStu0F/9RNfw6167P9WEG5YXAu9pRBO8ghl5vyBqdnju+B1qvqSpod+v9FWLMkzt+mOq0+DKWsdmtfpYdUxf01f6c1imiCicXDVokpy4JHxntU9+yFmqrdqLqrO3z3J0H1IQBkjwPU0="
 
 script:
-  # Required to pull Magisk without any errors.
+  # Required to pull Magisk Manager without any errors.
   - sudo apt-get install curl
   - PATH=~/bin:$PATH
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
-  # Get the latest commits.
+  # Get the latest commits via kanter
   - cd
   - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
   - cd Magisk/app
@@ -48,7 +50,7 @@ script:
   # Finally, upload the file
   - cd
   - cd Magisk
-  - ls -lR
+  - ls -l
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
 notifications:
