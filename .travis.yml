@@ -40,13 +40,13 @@ script:
   # Get the latest commits.
   - cd
   - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
-  - cd Magisk
+  - cd Magisk/app
   # Make sure all submodules work.
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
   - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
-  - cd Magisk/out
+  - cd Magisk
   - ls -l
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
