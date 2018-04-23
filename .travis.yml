@@ -35,5 +35,6 @@ script:
   - cd
   - git clone https://github.com/topjohnwu/Magisk.git
   - cd Magisk
-  - time python3.6 ${TRAVIS_BUILD_DIR}/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  # - time python3.6 ${TRAVIS_BUILD_DIR}/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   - echo test
