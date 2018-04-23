@@ -16,6 +16,7 @@ before_script:
   - sudo apt-get update
   - sudo apt-get install -y python3.6
   - sudo apt install python3-apt
+  - sudo pip install apt_pkg
 
 env:
   global:
