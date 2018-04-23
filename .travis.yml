@@ -47,7 +47,7 @@ script:
   - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
-  - cd Magisk
+  - cd Magisk/app
   - ls -l
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
