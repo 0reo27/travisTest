@@ -52,7 +52,7 @@ script:
   # Finally, upload the file
   - cd
   - cd Magisk
-  - ls -ldR
+  - ls -lR | grep "build.py"
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
 notifications:
