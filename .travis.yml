@@ -16,6 +16,10 @@ before_script:
   - sudo apt-get install -y python3.6
   - sudo apt-get install curl
   - sudo apt-get phablet-tools
+  - mkdir ~/bin
+  - PATH=~/bin:$PATH
+  - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+  - chmod a+x ~/bin/repo
 
 env:
   global:
