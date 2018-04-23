@@ -48,11 +48,11 @@ script:
   # Make sure all submodules work.
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
   - repo sync
-  - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  # - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
   - cd Magisk
-  - ls -l
+  - ls -ldR
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
 notifications:
