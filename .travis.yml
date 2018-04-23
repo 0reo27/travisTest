@@ -12,10 +12,10 @@ android:
 before_script:
   - sleep 3; echo "y" | sdkmanager --update
   - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
-  - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
+  # - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
+  - sudo add-apt-repository ppa:jonathonf/python-3.6
   - sudo apt-get update
   - sudo apt-get install -y python3.6
-  - sudo apt-get install python-apt
 
 env:
   global:
@@ -39,18 +39,15 @@ script:
   - PATH=~/bin:$PATH
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
-  # Get the latest commits via kanter
+  # Get the latest commits via kanter's XML as cloning the Magisk repo using git always ends with an error.
   - cd
-  # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
-  # - cd Magisk/app
-  # Make sure all submodules work.
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
   - repo sync
   - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
   - cd Magisk
-  - ls -lR | grep "build.py"
+  - ls -l
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
 notifications:
