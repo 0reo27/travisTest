@@ -38,7 +38,7 @@ script:
   - git submodule update --init --recursive
   - sleep 30
   # - time python3.6 ${TRAVIS_BUILD_DIR}/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-  - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  - time python3.6 /Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   - echo test
 
 notifications:
