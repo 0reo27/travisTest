@@ -1,24 +1,22 @@
 # Most of the initial part of the script was taken from - https://github.com/TheComputerGuy96/Magisk/blob/travisci-dev/.travis.yml
+language: android
+
 dist: trusty
+jdk: oraclejdk8
+sudo: required
 
 android:
   components:
     - tools
 
-matrix:
-  include:
-    - language: python
-      python: 3.6
-      install:
-        - pip install apt_pkg
-
-    - language: android
-      jdk: oraclejdk8
-
 before_script:
   - sleep 3; echo "y" | sdkmanager --update
   - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
-  #Extracted Here
+  - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
+  - sudo apt-get update
+  - sudo apt-get install -y python3.6
+  - curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
+  - apt-get install python-apt
 
 env:
   global:
