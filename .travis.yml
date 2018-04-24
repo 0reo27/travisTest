@@ -22,8 +22,10 @@ before_script:
 
 env:
   global:
-    - GH_EMAIL="you@example.com"
-    - GH_USERNAME=YourName
+    - GH_EMAIL="tcg96nougat@gmail.com"
+    - GH_FULLNAME="DodoGTA GT"
+    - GH_MAGISKFILES_REPO=github.com/TheComputerGuy96/MagiskFiles.git
+    - GH_USERNAME=TheComputerGuy96
     - ANDROID_HOME=/usr/local/android-sdk
     - PATH=/usr/local/android-sdk/ndk-bundle:${PATH}
     - MAGISK_VER_INTEGER=1640
