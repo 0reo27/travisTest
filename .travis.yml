@@ -46,9 +46,7 @@ script:
   - cd
   - cd Magisk
   - cd out
-  - ls -lR
-  - find * -name "*.zip"
-  #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
+  - for file in *.zip; do; curl --upload-file "$file" https://transfer.sh/$file; done
 
 notifications:
   email: false
