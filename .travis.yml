@@ -12,15 +12,10 @@ android:
 before_script:
   - sleep 3; echo "y" | sdkmanager --update
   - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
-  # - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
   - echo | sudo add-apt-repository ppa:deadsnakes/ppa
   - sudo apt-get update
   - sudo apt-get upgrade
   - sudo apt-get install -y python3.6
-  - sudo apt-get install python-apt
-
-  # - curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
-  # - sudo apt-get remove --purge python-apt
 
 env:
   global:
@@ -40,10 +35,10 @@ env:
 
 script:
   # Required to pull Magisk Manager without any errors.
-  - sudo apt-get install curl
-  - PATH=~/bin:$PATH
-  - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-  - chmod a+x ~/bin/repo
+  # - sudo apt-get install curl
+  # - PATH=~/bin:$PATH
+  # - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+  # - chmod a+x ~/bin/repo
   # Get the latest commits via kanter's XML as cloning the Magisk repo using git always ends with an error.
   - cd
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
