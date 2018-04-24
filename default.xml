@@ -7,7 +7,7 @@
   <remote name="xz-mirror" fetch="https://github.com/xz-mirror/" />
   <project path="Magisk" name="Magisk" remote="topjohnwu" revision="master" />
   <project path="Magisk/native/jni/external/selinux" name="selinux" remote="topjohnwu" revision="android"/>
-  <project path="Magisk/native/jni/su" name="su" remote="topjohnwu" revision="master"/>
+  <project path="Magisk/native/jni/su" name="MagiskSU" remote="topjohnwu" revision="master"/>
   <project path="Magisk/native/jni/magiskpolicy" name="magiskpolicy" remote="topjohnwu" revision="master"/>
   <project path="Magisk/app" name="MagiskManager" remote="topjohnwu" revision="master"/>
   <project path="Magisk/native/jni/external/busybox" name="ndk-busybox" remote="topjohnwu" revision="android-ndk-1.28.3"/>
