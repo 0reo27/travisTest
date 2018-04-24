@@ -37,16 +37,18 @@ script:
   # Required to pull Magisk Manager without any errors.
   # - sudo apt-get install curl
   # - PATH=~/bin:$PATH
-  # - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-  # - chmod a+x ~/bin/repo
+  - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+  - chmod a+x ~/bin/repo
   # Get the latest commits via kanter's XML as cloning the Magisk repo using git always ends with an error.
   - cd
   - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
   - repo sync
-  - time python3.6 /home/travis/Magisk/build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  - cd Magisk
+  - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # Finally, upload the file
   - cd
   - cd Magisk
+  - cd native/jni/include
   - ls -l
   #- curl --upload-file ./hello.txt https://transfer.sh/hello.txt 
 
