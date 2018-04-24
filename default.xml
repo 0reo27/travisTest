@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="topjohnwu" fetch="https://github.com/topjohnwu/" />
+  <remote name="dgibson" fetch="https://github.com/dgibson/" />
+  <remote name="lz4" fetch="https://github.com/lz4/" />
+  <remote name="nemequ" fetch="https://github.com/nemequ/" />
+  <remote name="xz-mirror" fetch="https://github.com/xz-mirror/" />
+  <project path="Magisk" name="Magisk" remote="topjohnwu" revision="master" />
+  <project path="Magisk/native/jni/external/selinux" name="selinux" remote="topjohnwu" revision="android" />
+  <project path="Magisk/native/jni/su" name="MagiskSU" remote="topjohnwu" revision="master" />
+  <project path="Magisk/native/jni/magiskpolicy" name="magiskpolicy" remote="topjohnwu" revision="master" />
+  <project path="Magisk/app" name="MagiskManager" remote="topjohnwu" revision="master" />
+  <project path="Magisk/native/jni/external/busybox" name="busybox" remote="topjohnwu" revision="android-ndk-1.28.3" />
+  <project path="Magisk/native/jni/external/dtc" name="dtc" remote="dgibson" revision="master" />
+  <project path="Magisk/native/jni/external/lz4" name="lz4" remote="lz4" revision="dev" />
+  <project path="Magisk/native/jni/external/bzip2" name="bzip2" remote="nemequ" revision="master" />
+  <project path="Magisk/native/jni/external/xz" name="bzip2" remote="xz-mirror" revision="master" />
+</manifest>
