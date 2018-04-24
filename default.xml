@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <manifest>
   <!-- Run git clone --recurse-submodules -->
   <!-- Check .gitmodules -->
@@ -12,6 +13,7 @@
   <!--  -->
   <!--  -->
   <!--  -->
+
   <project path="Magisk" name="Magisk" remote="topjohnwu" revision="master" />
   <project path="Magisk/native/jni/external/selinux" name="selinux" remote="topjohnwu" revision="android"/>
   <project path="Magisk/native/jni/su" name="su" remote="topjohnwu" revision="master"/>
@@ -24,4 +26,5 @@
   <project path="Magisk/native/jni/external/xz" name="xz" remote="xz-mirror" revision="master"/>
   <!-- Own Repository -->
   <!-- <project path="travisTest" name="travisTest" remote="0reo27" revision="master" /> -->
+  
 </manifest>
