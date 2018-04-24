@@ -12,11 +12,13 @@ android:
 before_script:
   - sleep 3; echo "y" | sdkmanager --update
   - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
-  - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
-  - sudo apt-get install -y python3.6
-  - sudo apt-get install python-apt
+  # - echo | sudo add-apt-repository ppa:jonathonf/python-3.6
+  - echo | sudo add-apt-repository ppa:deadsnakes/ppa
   - sudo apt-get update
   - sudo apt-get upgrade
+  - sudo apt-get install -y python3.6
+  - sudo apt-get install python-apt
+
   # - curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
   # - sudo apt-get remove --purge python-apt
 
