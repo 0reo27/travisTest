@@ -22,8 +22,8 @@ before_script:
 
 env:
   global:
-    - git config --global user.email "you@example.com"
-    - git config --global user.name "Your Name"
+    - GH_EMAIL="you@example.com"
+    - GH_USERNAME=YourName
     - ANDROID_HOME=/usr/local/android-sdk
     - PATH=/usr/local/android-sdk/ndk-bundle:${PATH}
     - MAGISK_VER_INTEGER=1640
