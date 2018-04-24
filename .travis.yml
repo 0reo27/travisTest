@@ -50,6 +50,7 @@ script:
     for file in *.zip
     do
       curl --upload-file "$file" https://transfer.sh/"$file"
+      echo
     done
 
 notifications:
