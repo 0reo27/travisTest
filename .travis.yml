@@ -23,13 +23,10 @@ before_script:
 env:
   global:
     - ANDROID_HOME=/usr/local/android-sdk
-    - MAGISK_DATE=$(date -u +%Y%m%d)
-    - MAGISK_VER_INTEGER=1600
-    - MAGISK_VER_STRING=16.0
-    - MAGISK_TIME=$(date -u +%H%M%S)
-    - MAGISK_ZIPFILES=Magisk-*.zip
-    - MAGISKFILES_NAME=MagiskFiles
     - PATH=/usr/local/android-sdk/ndk-bundle:${PATH}
+    - MAGISK_VER_INTEGER=1640
+    - MAGISK_VER_STRING=16.4
+    - MAGISK_TIME=$(date -u +%H%M%S)
 
 script:
   # Repo is required to pull Magisk Manager without any errors using kantjer's repository XML.
@@ -47,7 +44,7 @@ script:
   - cd Magisk
   - cd out
   - |
-    for file in *.zip
+    for file in *.{zip,apk}
     do
       curl --upload-file "$file" https://transfer.sh/"$file"
       echo
