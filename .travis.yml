@@ -57,8 +57,8 @@ script:
     curl --upload-file "$file" https://transfer.sh/"$file"
     echo
   done
-  cd "$TRAVIS_BUILD_DIR"
-  ls -l
+- cd "$TRAVIS_BUILD_DIR"
+- ls -l
 notifications:
   email: false
 
