@@ -12,16 +12,11 @@ android:
     - tools
     - platform-tools
     - build-tools-26.0.2
-    - android-26
+    - android-27
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-26
-  # Accept licenses.
-  licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+    - addon-google_apis-google-27
 before_script:
   # License acceptance
   - sleep 3; echo "y" | sdkmanager --update
