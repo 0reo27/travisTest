@@ -7,11 +7,11 @@ android:
     - tools
     - platform-tools
     - build-tools-27.0.3
-    - android-27
+    - android-26
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-27
+    - addon-google_apis-google-26
 before_script:
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update
