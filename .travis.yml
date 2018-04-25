@@ -8,10 +8,16 @@ sudo: required
 android:
   components:
     - tools
+    - build-tools-26.1.1
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+install:
+  - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
-  - sleep 3; echo "y" | sdkmanager --update
-  - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
+  # - sleep 3; echo "y" | sdkmanager --update
+  # - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
   # New PPA for python for Ubuntu.
   - echo | sudo add-apt-repository ppa:deadsnakes/ppa
   # Required to get PPA going.
