@@ -17,7 +17,7 @@ android:
     - addon-google_apis-google-26
 
 install:
-  # - echo y | sdkmanager 'ndk-bundle'
+  - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
   # New PPA for python for Ubuntu.
