@@ -29,16 +29,21 @@ env:
     - secure: >-
         ZVXI+c5pdfwqGebBabpoh0iWTHH3RlYNpTkmkI2WBiFuzQjaE+bOBRU4d5enUZ18MmmtwM3/YbqG86poBQszxaEu3it1hdAwawthhn3BEO6iREe/pNZHDs/H6qFuaXJoInjfl+/VljD1ud5kVNL2VoTmtmb1cVy8+80uN5c/SHmkHkezCWjNr2r5zSkMaPEFjM6DjfeqtZ92NmkrVDlMZYW1WT/Nny0s17uYo+70TvTjIpfrvGuYdQp3ThauHGZLr9DQrMa8egRs0cq/h+Q2mWQZk28FTYLqJEWKw8AcK3ejUGhlFreQYE5w6vO+ZfrPTsMlmTA3rQZAly6Zw6SXK0Z3kR4X/oWNXWXWGmXs63Rd+2IvTgekCcO4kOx+PtbQUxiDY6YqVIvWHnG2jv95y9gA2GRAb5LjoKLZAgCuruxaC7+UPHe+MaNS1CUFQ1XMA9VxjqXdNV8QGEN9dQ771TKBIS5WmPjf58PjqZbBTR9Jr4r1HlrE4KKxssajo+3tIlwAvPte1lXO4uCzcf8zc40abGMjx75lEStu0F/9RNfw6167P9WEG5YXAu9pRBO8ghl5vyBqdnju+B1qvqSpod+v9FWLMkzt+mOq0+DKWsdmtfpYdUxf01f6c1imiCicXDVokpy4JHxntU9+yFmqrdqLqrO3z3J0H1IQBkjwPU0=
 script:
+  - cd "$ANDROID_HOME"
+  - mkdir -p "ndk-bundle"
+  - export TERM=dumb
   - >-
     curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
     -O
   - chmod u+x android-ndk-r10e-linux-x86_64.bin
   - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
   - rm android-ndk-r10e-linux-x86_64.bin
+  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
+  - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
+  - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
+  - 'export PATH=$PATH:${ANDROID_NDK_HOME}'
   - export ANDROID_NDK=`pwd`/android-ndk-r10e
-  - 'export PATH=$PATH:${ANDROID_NDK}'
-  - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
-  - chmod a+x ~/bin/repo
+  - env
   - cd
   - 'repo init -u https://github.com/0reo27/travisTest'
   - repo sync
