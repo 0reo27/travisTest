@@ -47,6 +47,8 @@ script:
   - cd
   - 'repo init -u https://github.com/0reo27/travisTest'
   - repo sync
+  - echo yes | sudo sdkmanager --licenses
+  - yes | sudo sdkmanager --licenses
   - cd Magisk
   - >-
     time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
