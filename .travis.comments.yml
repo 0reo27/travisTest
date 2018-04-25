@@ -24,7 +24,7 @@ android:
     - 'google-gdk-license-.+'
 before_script:
   # License acceptance
-  - echo "yes" | sudo sdkmanager --licenses
+  - sleep 3; echo "y" | sdkmanager --update
   # Python needs to be installed correctly using this new PPA. 
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update

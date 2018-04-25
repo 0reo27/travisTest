@@ -17,7 +17,7 @@ android:
     - android-sdk-license-.+
     - google-gdk-license-.+
 before_script:
-  - echo "yes" | sdkmanager --licenses
+  - sleep 3; echo "y" | sdkmanager --update
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update
   - sudo apt-get upgrade
