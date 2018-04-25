@@ -48,10 +48,10 @@ script:
   # Usually around 1 minute 
   - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
   - rm android-ndk-r10e-linux-x86_64.bin
-  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
-  - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
+  - export ANDROID_NDK=`pwd`/android-ndk-r10e
+  - export LOCAL_ANDROID_NDK="$ANDROID_NDK"
   - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
-  - export PATH=$PATH:${ANDROID_NDK_HOME}
+  - export PATH=$PATH:${ANDROID_NDK}
   - env
 
   # Repo is required to pull Magisk Manager without any errors using kantjer's repository XML.
