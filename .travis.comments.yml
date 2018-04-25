@@ -23,6 +23,8 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 before_script:
+  # License acceptance
+  - echo "yes" | sudo sdkmanager --licenses
   # Python needs to be installed correctly using this new PPA. 
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update
@@ -63,9 +65,6 @@ script:
   # Then manually view .gitmodules for details.
   - 'repo init -u https://github.com/0reo27/travisTest'
   - repo sync
-  # License acceptance
-  - echo yes | sudo sdkmanager --licenses
-  - yes | sudo sdkmanager --licenses
   # Magisk
   - cd Magisk
   - >-
