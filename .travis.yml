@@ -13,15 +13,15 @@ android:
   - extra-android-m2repository
   - addon-google_apis-google-26
 install:
-- curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin -O
-- chmod u+x android-ndk-r10e-linux-x86_64.bin
-- "./android-ndk-r10e-linux-x86_64.bin > /dev/null"
-- rm android-ndk-r10e-linux-x86_64.bin
-- export ANDROID_NDK=`pwd`/android-ndk-r10e
-- export LOCAL_ANDROID_NDK="$ANDROID_NDK"
-- export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
-- export PATH=$PATH:${ANDROID_NDK}
-- env
+  - curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin -O
+  - chmod u+x android-ndk-r10e-linux-x86_64.bin
+  - "./android-ndk-r10e-linux-x86_64.bin > /dev/null"
+  - rm android-ndk-r10e-linux-x86_64.bin
+  - export ANDROID_NDK=`pwd`/android-ndk-r10e
+  - export LOCAL_ANDROID_NDK="$ANDROID_NDK"
+  - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
+  - export PATH=$PATH:${ANDROID_NDK}
+  - env
 before_script:
 - echo | sudo add-apt-repository ppa:deadsnakes/ppa
 - sudo apt-get update
