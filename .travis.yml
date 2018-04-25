@@ -9,7 +9,7 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-26.1.1
+    - build-tools-26
     - android-26    
     - extra-google-google_play_services
     - extra-google-m2repository
@@ -17,7 +17,17 @@ android:
     - addon-google_apis-google-26
 
 install:
-  - echo y | sdkmanager 'ndk-bundle'
+  - curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin -O
+  - chmod u+x android-ndk-r10e-linux-x86_64.bin
+  # Usually around 1 minute 
+  - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
+  - rm android-ndk-r10e-linux-x86_64.bin
+  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
+  - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
+  - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
+  - export PATH=$PATH:${ANDROID_NDK_HOME}
+  - env
+  # - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
   # New PPA for python for Ubuntu.
@@ -47,13 +57,11 @@ script:
   - chmod a+x ~/bin/repo
   # Get the latest commits via XML based on kantjer's as cloning the Magisk repo using git always ends with an error due to non-existant commits.
   - cd
-  - repo init -u https://github.com/0reo27/travisTest --depth=1
-  - repo sync --fetch-submodules
+  - repo init -u https://github.com/0reo27/travisTest
+  - repo sync
   - cd Magisk
   # One has to cd into the directory and run from there as opposed to being called from another directory.
-  - time python3.6 build.py all 14.6 1460 && echo "Magisk has been successfully built"
-  - clear
-  # - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # - time python3.6 build.py -h
   # Finally, upload the files
   - cd
