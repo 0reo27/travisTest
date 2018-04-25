@@ -25,8 +25,8 @@ before_install:
   - >-
     wget
     https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
-  - unzip android-ndk-r16b-linux-x86_64.zip -d $HOME
-  - export ANDROID_NDK_HOME=$HOME/android-ndk-r16b
+  - unzip android-ndk-r10e-linux-x86_64.zip -d $HOME
+  - export ANDROID_NDK_HOME=$HOME/android-ndk-r10e
   - 'export PATH=$PATH:$ANDROID_NDK_HOME'
   - mkdir "$ANDROID_HOME/licenses" || true
   - >-
