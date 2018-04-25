@@ -6,12 +6,12 @@ android:
   components:
   - tools
   - platform-tools
-  - build-tools-26
-  - android-26
+  - build-tools-27.0.3
+  - android-27
   - extra-google-google_play_services
   - extra-google-m2repository
   - extra-android-m2repository
-  - addon-google_apis-google-26
+  - addon-google_apis-google-27
 install:
 
 before_script:
