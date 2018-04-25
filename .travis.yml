@@ -13,6 +13,7 @@ android:
   - extra-android-m2repository
   - addon-google_apis-google-27
 install:
+  - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
   - echo | sudo add-apt-repository ppa:deadsnakes/ppa
