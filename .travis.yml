@@ -1,3 +1,8 @@
+# Comments aren't interpreted properly in YAML.
+# Edit the file and copy over to .travis.yml.
+# Basic Configuration taken from:
+# https://github.com/TheComputerGuy96/Magisk/blob/travisci-dev/.travis.yml
+# https://docs.travis-ci.com/user/languages/android/
 language: android
 dist: trusty
 jdk: oraclejdk8
@@ -11,24 +16,33 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-24
 before_script:
+  # License acceptance
   - sleep 3; echo "y" | sdkmanager --update
+  - echo y | sdkmanager 'ndk-bundle'
+  # Python needs to be installed correctly using this new PPA. 
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update
   - sudo apt-get upgrade
+  # Acutal installation
   - sudo apt-get install -y python3.6
 env:
   global:
+    # This is required for the repo command to not throw errors.
     - GH_EMAIL="tcg96nougat@gmail.com"
     - GH_FULLNAME="DodoGTA GT"
     - GH_MAGISKFILES_REPO=github.com/TheComputerGuy96/MagiskFiles.git
     - GH_USERNAME=TheComputerGuy96
+    # Magisk requirements and specifics.
     - ANDROID_HOME=/usr/local/android-sdk
     - MAGISK_VER_INTEGER=1640
     - MAGISK_VER_STRING=16.4
     - MAGISK_TIME=$(date -u +%H%M%S)
+    # Not my secure key.
     - secure: >-
         ZVXI+c5pdfwqGebBabpoh0iWTHH3RlYNpTkmkI2WBiFuzQjaE+bOBRU4d5enUZ18MmmtwM3/YbqG86poBQszxaEu3it1hdAwawthhn3BEO6iREe/pNZHDs/H6qFuaXJoInjfl+/VljD1ud5kVNL2VoTmtmb1cVy8+80uN5c/SHmkHkezCWjNr2r5zSkMaPEFjM6DjfeqtZ92NmkrVDlMZYW1WT/Nny0s17uYo+70TvTjIpfrvGuYdQp3ThauHGZLr9DQrMa8egRs0cq/h+Q2mWQZk28FTYLqJEWKw8AcK3ejUGhlFreQYE5w6vO+ZfrPTsMlmTA3rQZAly6Zw6SXK0Z3kR4X/oWNXWXWGmXs63Rd+2IvTgekCcO4kOx+PtbQUxiDY6YqVIvWHnG2jv95y9gA2GRAb5LjoKLZAgCuruxaC7+UPHe+MaNS1CUFQ1XMA9VxjqXdNV8QGEN9dQ771TKBIS5WmPjf58PjqZbBTR9Jr4r1HlrE4KKxssajo+3tIlwAvPte1lXO4uCzcf8zc40abGMjx75lEStu0F/9RNfw6167P9WEG5YXAu9pRBO8ghl5vyBqdnju+B1qvqSpod+v9FWLMkzt+mOq0+DKWsdmtfpYdUxf01f6c1imiCicXDVokpy4JHxntU9+yFmqrdqLqrO3z3J0H1IQBkjwPU0=
 script:
+  # Install the NDK and control its versioning.
+  # https://github.com/travis-ci/travis-ci/issues/5395
   - >-
     curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
     -O
@@ -40,8 +54,12 @@ script:
   - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
   - chmod a+x ~/bin/repo
   - cd
+  # Got the idea from - https://github.com/kantjer/magisk_manifest
+  # Uses git clone --recurse-submodules
+  # Then manually view .gitmodules for details.
   - 'repo init -u https://github.com/0reo27/travisTest'
   - repo sync
+  # Magisk
   - cd Magisk
   - >-
     time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
@@ -49,9 +67,14 @@ script:
   - cd
   - cd Magisk
   - cd out
+  # Copy releases to the inbuilt build dir.
   - 'cp -fpRv *.{zip,apk} "$TRAVIS_BUILD_DIR"'
   - cd "$TRAVIS_BUILD_DIR"
+  # Pipe out the contents in case one needs to debug.
   - ls -l
+# Deploy a release to github.
+# travis setup releases - Ruby required.
+# https://docs.travis-ci.com/user/deployment/releases/
 deploy:
   provider: releases
   tag_name: $MAGISK_VER_STRING

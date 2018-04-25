@@ -18,6 +18,7 @@ android:
 before_script:
   # License acceptance
   - sleep 3; echo "y" | sdkmanager --update
+  - echo y | sdkmanager 'ndk-bundle'
   # Python needs to be installed correctly using this new PPA. 
   - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
   - sudo apt-get update
