@@ -8,9 +8,13 @@ sudo: required
 android:
   components:
     - tools
+    - platform-tools
     - build-tools-26.1.1
+    - android-26    
+    - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
+    - addon-google_apis-google-26
 
 install:
   - echo y | sdkmanager 'ndk-bundle'
@@ -50,7 +54,7 @@ script:
   - repo sync
   - cd Magisk
   # One has to cd into the directory and run from there as opposed to being called from another directory.
-  - time python3.6 build.py all && echo "Magisk has been successfully built"
+  - time python3.6 build.py all 14.6 1460 && echo "Magisk has been successfully built"
   - clear
   # - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # - time python3.6 build.py -h
