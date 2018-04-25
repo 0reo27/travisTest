@@ -20,8 +20,6 @@ install:
   - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
-  # - sleep 3; echo "y" | sdkmanager --update
-  # - (while true; do echo "y"; sleep 3; done) | sdkmanager "build-tools;27.0.0" "extras;android;m2repository" "ndk-bundle" > /dev/null
   # New PPA for python for Ubuntu.
   - echo | sudo add-apt-repository ppa:deadsnakes/ppa
   # Required to get PPA going.
@@ -47,11 +45,10 @@ script:
   # Repo is required to pull Magisk Manager without any errors using kantjer's repository XML.
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
-  # Get the latest commits via kantjer's XML as cloning the Magisk repo using git always ends with an error due to non-existant commits.
+  # Get the latest commits via XML based on kantjer's as cloning the Magisk repo using git always ends with an error due to non-existant commits.
   - cd
   - repo init -u https://github.com/0reo27/travisTest --depth=1
-  # - repo init -u https://github.com/kantjer/magisk_manifest --depth=1
-  - repo sync
+  - repo sync --fetch-submodules
   - cd Magisk
   # One has to cd into the directory and run from there as opposed to being called from another directory.
   - time python3.6 build.py all 14.6 1460 && echo "Magisk has been successfully built"

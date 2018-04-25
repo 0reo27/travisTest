@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <default sync-s="true"/>
   <remote name="topjohnwu" fetch="https://github.com/topjohnwu/" />
   <remote name="dgibson" fetch="https://github.com/dgibson/" />
   <remote name="lz4" fetch="https://github.com/lz4/" />
