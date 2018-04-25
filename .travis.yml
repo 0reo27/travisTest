@@ -44,7 +44,8 @@ script:
   - repo sync
   - cd Magisk
   # One has to cd into the directory and run from there as opposed to being called from another directory.
-  - time python3.6 build.py --release all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+  - time python3.6 build.py all && echo "Magisk has been successfully built"
+  - clear
   # - time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
   # - time python3.6 build.py -h
   # Finally, upload the files
