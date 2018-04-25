@@ -4,16 +4,16 @@ jdk: oraclejdk8
 sudo: required
 android:
   components:
-  - tools
-  - platform-tools
-  - build-tools-27.0.3
-  - android-27
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - addon-google_apis-google-27
+    - tools
+    - platform-tools
+    - build-tools-27.0.3
+    - android-27
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-27
 install:
-  - echo y | sdkmanager 'ndk-bundle'
+  # - echo y | sdkmanager 'ndk-bundle'
 
 before_script:
   - echo | sudo add-apt-repository ppa:deadsnakes/ppa
@@ -22,12 +22,14 @@ before_script:
   - sudo apt-get install -y python3.6
 env:
   global:
+    # This part is necessary for repo not to throw errors.
   - GH_EMAIL="tcg96nougat@gmail.com"
   - GH_FULLNAME="DodoGTA GT"
   - GH_MAGISKFILES_REPO=github.com/TheComputerGuy96/MagiskFiles.git
   - GH_USERNAME=TheComputerGuy96
+  # 
   - ANDROID_HOME=/usr/local/android-sdk
-  - PATH=/usr/local/android-sdk/ndk-bundle:${PATH}
+  # - PATH=/usr/local/android-sdk/ndk-bundle:${PATH}
   - MAGISK_VER_INTEGER=1640
   - MAGISK_VER_STRING=16.4
   - MAGISK_TIME=$(date -u +%H%M%S)
@@ -39,11 +41,10 @@ script:
   - "./android-ndk-r10e-linux-x86_64.bin > /dev/null"
   - rm android-ndk-r10e-linux-x86_64.bin
   - export ANDROID_NDK=`pwd`/android-ndk-r10e
-  - export LOCAL_ANDROID_NDK="$ANDROID_NDK"
-  - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
+  # - export LOCAL_ANDROID_NDK="$ANDROID_NDK"
+  # - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
   - export PATH=$PATH:${ANDROID_NDK}
-  - env
-  # Repo is required to avoid errors with non-existant commits.
+  # Repo is required to avoid errors when cloning with non-existant commits.
   - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
   - chmod a+x ~/bin/repo
   - cd
@@ -56,14 +57,14 @@ script:
   - cd
   - cd Magisk
   - cd out
-  # Copy to the build directory
-  - cp -fpRv * "$TRAVIS_BUILD_DIR"
-  - |
-    for file in *.{zip,apk}
-    do
-      curl --upload-file "$file" https://transfer.sh/"$file"
-      echo
-    done
+  # Copy releases to the build directory for deployment
+  - cp -fpRv *.{zip,apk} "$TRAVIS_BUILD_DIR"
+  # - |
+  #   for file in *.{zip,apk}
+  #   do
+  #     curl --upload-file "$file" https://transfer.sh/"$file"
+  #     echo
+  #   done
   - cd "$TRAVIS_BUILD_DIR"
   - ls -l
 notifications:
@@ -73,7 +74,8 @@ deploy:
   provider: releases
   api_key:
     secure: VeP/gjAFFs+w/nh8TUGLaC7sLVaH0KNgdNl8Q7yWoeayOY282RHiQeGA+5z2ESGlM3ui9vYCMqSupjgu07iy5VonsABZ5X7yAjle0c0ZFbQYgqkLJvTZ3OW0jlehG3rL7g/b/rQ8ZB3SFs4ZHp2kJwIF0I7f2lpZPIVsgL7XDBfBwjCBNPfMJ3A7m2bcR7FniUBFc9uHgbkkBEV4AEzPaTlDsYKUTIIDe94TLALeDrROvyAxZO/MA3vNsZnTNcIAQrY5WJtU4G/vfSDMtv/q5M7yjASvGBw/uwTnCDZjDCAnxvdMu2J1QVne1aYWDkV0+iX4kj/v4NKU855HbRg+tLFCeEaDnThq5hSt/zSf79HT9TMFUUFdlBAbApU0u41A2mFGrh4imdk5ELlbWSQS5yj5EGFyv11uOenAxrysyEtKk3sWXI6/91Zpewr8HkrprXGv4rctiM6sKpdcKIs99nCQf/CPmL1tQlYgACW86yp7JeqAgmr6eD3gdjajynWLog/EbpjZT1XxxqpNV/kyUuy4QTgeB0x/QE9rllUaPB1viHVHSDSpwBA0fvRBQ6s8EOOwYJPjHhGwGhoB1/Degvx8KGU+icXhUgo5AASjVA3DPOwpyPphQNZ9QEGnZjmXV8uTJ1mEzBBX3s+gB6D035+sxGbFBT7iiN2q6krVi00=
-  file: 
-    - Magisk-v"$MAGISK_VER_STRING".zip
+  file_glob: true
+  file: *
+  overwrite: true
   on:
     repo: 0reo27/travisTest
