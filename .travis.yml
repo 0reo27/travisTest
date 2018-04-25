@@ -1,3 +1,5 @@
 language: android
 script:
   -android list sdk --no-ui --all --extended
+notifications:
+  email: false
