@@ -5,7 +5,8 @@ install:
   - ls -l
 script:
   - pwd
-  - cd $HOME
+  - ls -l
+  - cd $TRAVIS_BUILD_DIR
   - ls -l
 notifications:
   email: false
