@@ -5,8 +5,9 @@ script:
   - cd $TRAVIS_BUILD_DIR
   - ls -l
   - cd $JAVA_HOME/bin
+  - export randomString=date +%s | sha256sum | base64 | head -c 32
   - >-
-    date +%s | sha256sum | base64 | head -c 32 | yes | sudo keytool -genkey -v -keystore release_signature.jks
+    yes $randomString | sudo keytool -genkey -v -keystore release_signature.jks
     -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
 notifications:
   email: false
