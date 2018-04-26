@@ -78,14 +78,14 @@ script:
     - cd "$JAVA_HOME"
     - cd bin
     - |
-      keytool -keystore release_signature.jks -genkey -noprompt \
+      sudo keytool -keystore release_signature.jks -genkey -noprompt \
         -alias alias1 \
         -dname "CN=mqttserver.ibm.com, OU=ID, O=IBM, L=Hursley, S=Hants, C=GB" \
         -keystore keystore \
         -storepass password \
         -keypass password
-    - cp -f release_signature.jks /Magisk
-    - cd /Magisk
+    - cp -f release_signature.jks $HOME/Magisk
+    - cd $HOME/Magisk
     - >-
       time python3.6 build.py --release all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
       echo "Magisk has been successfully built"
