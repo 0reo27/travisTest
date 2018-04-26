@@ -83,8 +83,7 @@ script:
 # travis setup releases - Ruby required.
 # https://docs.travis-ci.com/user/deployment/releases/
 before_deploy:
-  - cd
-  - cd Magisk
+  - cd "$TRAVIS_BUILD_DIR"
   - export RELEASE_PKG_FILE=$(ls *.{zip,apk})
   - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 deploy:
