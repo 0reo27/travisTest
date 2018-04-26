@@ -1,8 +1,10 @@
 language: node_js
 node_js:
-  - "node"
+  - node
 install:
   - ls -l
 script:
   - cd $HOME
-  - ls l
+  - ls -l
+notifications:
+  email: false
