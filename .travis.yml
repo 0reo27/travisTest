@@ -1,7 +1,4 @@
-language: android
-dist: trusty
-jdk: oraclejdk8
-sudo: required
+language: node
 deploy:
   provider: releases
   tag_name: test
