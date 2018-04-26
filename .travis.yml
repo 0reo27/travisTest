@@ -1,15 +1,13 @@
 language: node_js
 node_js:
-  - node
+  - "node"
 install:
   - ls -l
 script:
   - cd "$TRAVIS_BUILD_DIR"
   - ls -l
-before_deploy:
-  - >-
-    git describe --abbrev=0 --tags `git rev-list --tags --skip=1` | xargs -n 1
-    git push --delete origin
+before_deploy: 
+ - git describe --abbrev=0 --tags `git rev-list --tags --skip=1` | xargs -n 1 git push --delete origin
 deploy:
   provider: releases
   tag_name: $MAGISK_VER_STRING-$MAGISK_TIME
