@@ -60,7 +60,7 @@ script:
   - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
   - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
-    time python3.6 build.py --release all ${MAGISK_VER_STRING}
+    yes 1VykWMeF8w9A | python3.6 build.py --release all ${MAGISK_VER_STRING}
     ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
 before_deploy:
   - cd $TRAVIS_BUILD_DIR/Magisk/out
