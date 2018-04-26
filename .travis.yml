@@ -1,4 +1,3 @@
-language: node
 deploy:
   provider: releases
   tag_name: test
