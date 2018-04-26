@@ -84,7 +84,7 @@ script:
         -keystore keystore \
         -storepass password \
         -keypass password
-    - cp -f release_signature.jks $HOME/Magisk
+    - sudo cp -f release_signature.jks $HOME/Magisk
     - cd $HOME/Magisk
     - >-
       time python3.6 build.py --release all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&

@@ -4,6 +4,7 @@ node_js:
 install:
   - ls -l
 script:
+  - pwd
   - cd $HOME
   - ls -l
 notifications:
