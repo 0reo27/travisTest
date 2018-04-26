@@ -45,6 +45,9 @@ script:
   - export ANDROID_NDK=`pwd`/android-ndk-r10e
   - env
   - cd
+  - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
+  - chmod a+x ~/bin/repo
+  - cd
   - 'repo init -u https://github.com/0reo27/travisTest'
   - repo sync
   - cd Magisk
