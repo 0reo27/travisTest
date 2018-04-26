@@ -6,7 +6,7 @@ script:
   - ls -l
   - cd $JAVA_HOME/bin
   - >-
-    yes $RANDOM | sudo keytool -genkey -v -keystore release_signature.jks
+    date +%s | sha256sum | base64 | head -c 32 | yes | sudo keytool -genkey -v -keystore release_signature.jks
     -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
 notifications:
   email: false
