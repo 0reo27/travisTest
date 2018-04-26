@@ -1,4 +1,8 @@
 language: c
+install:
+  - clear
+script:
+  - clear
 deploy:
   provider: releases
   tag_name: test
