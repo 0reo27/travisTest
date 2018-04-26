@@ -64,15 +64,16 @@ script:
     - export PATH=$PATH:${ANDROID_NDK_HOME}
     - export ANDROID_NDK=`pwd`/android-ndk-r10e
     - env
-    - cd
+    - cd $TRAVIS_BUILD_DIR
     # Got the idea from - https://github.com/kantjer/magisk_manifest
     # Uses git clone --recurse-submodules
     # Then manually view .gitmodules for details.
     - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
     - chmod a+x ~/bin/repo
-    - cd
+    - cd $TRAVIS_BUILD_DIR
     - 'repo init -u https://github.com/0reo27/travisTest'
     - repo sync
+    - ls -l
     # Magisk
     # Prepare releasing
     - cd $JAVA_HOME/bin
