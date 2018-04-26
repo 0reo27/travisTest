@@ -5,4 +5,4 @@ install:
   - ls -l
 script:
   - cd $HOME
-  - ls l
+  - ls -l
