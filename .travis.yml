@@ -1,4 +1,4 @@
-language: java
+language: c
 deploy:
   provider: releases
   tag_name: test
