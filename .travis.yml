@@ -6,7 +6,7 @@ script:
   - ls -l
   - cd $JAVA_HOME/bin
   - >-
-    yes "1VykWMeF8w9A" | sudo keytool -genkey -v -keystore release_signature.jks
+    echo "1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A 1VykWMeF8w9A y" | sudo keytool -genkey -v -keystore release_signature.jks
     -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
 notifications:
   email: false
