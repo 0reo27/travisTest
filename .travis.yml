@@ -1,8 +1,10 @@
-language: c
+language: node_js
+node_js:
+  - "node"
 install:
-  - clear
+  - ls -l
 script:
-  - clear
+  - ls -l
 deploy:
   provider: releases
   tag_name: test
