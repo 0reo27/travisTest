@@ -82,7 +82,7 @@ script:
     # Build
     - cd $TRAVIS_BUILD_DIR/Magisk
     - >-
-      python3.6 build.py zip ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
+      python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
       echo "Magisk has been successfully built"
 
 # Deploy a release to github.
