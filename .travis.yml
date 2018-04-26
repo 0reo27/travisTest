@@ -1,82 +1,16 @@
-language: android
-dist: trusty
-jdk: oraclejdk8
-sudo: required
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-26.0.1
-    - android-26
-    - extra-android-m2repository
-    - addon-google_apis-google-24
-before_script:
-  - sleep 3; echo "y" | sdkmanager --update
-  - 'echo | sudo add-apt-repository ppa:deadsnakes/ppa'
-  - sudo apt-get update
-  - sudo apt-get upgrade
-  - sudo apt-get install -y python3.6
-env:
-  global:
-    - GH_EMAIL="tcg96nougat@gmail.com"
-    - GH_FULLNAME="DodoGTA GT"
-    - GH_MAGISKFILES_REPO=github.com/TheComputerGuy96/MagiskFiles.git
-    - GH_USERNAME=TheComputerGuy96
-    - ANDROID_HOME=/usr/local/android-sdk
-    - MAGISK_VER_INTEGER=1640
-    - MAGISK_VER_STRING=16.4
-    - MAGISK_TIME=$(date -u +%H%M%S)
-    - secure: >-
-        ZVXI+c5pdfwqGebBabpoh0iWTHH3RlYNpTkmkI2WBiFuzQjaE+bOBRU4d5enUZ18MmmtwM3/YbqG86poBQszxaEu3it1hdAwawthhn3BEO6iREe/pNZHDs/H6qFuaXJoInjfl+/VljD1ud5kVNL2VoTmtmb1cVy8+80uN5c/SHmkHkezCWjNr2r5zSkMaPEFjM6DjfeqtZ92NmkrVDlMZYW1WT/Nny0s17uYo+70TvTjIpfrvGuYdQp3ThauHGZLr9DQrMa8egRs0cq/h+Q2mWQZk28FTYLqJEWKw8AcK3ejUGhlFreQYE5w6vO+ZfrPTsMlmTA3rQZAly6Zw6SXK0Z3kR4X/oWNXWXWGmXs63Rd+2IvTgekCcO4kOx+PtbQUxiDY6YqVIvWHnG2jv95y9gA2GRAb5LjoKLZAgCuruxaC7+UPHe+MaNS1CUFQ1XMA9VxjqXdNV8QGEN9dQ771TKBIS5WmPjf58PjqZbBTR9Jr4r1HlrE4KKxssajo+3tIlwAvPte1lXO4uCzcf8zc40abGMjx75lEStu0F/9RNfw6167P9WEG5YXAu9pRBO8ghl5vyBqdnju+B1qvqSpod+v9FWLMkzt+mOq0+DKWsdmtfpYdUxf01f6c1imiCicXDVokpy4JHxntU9+yFmqrdqLqrO3z3J0H1IQBkjwPU0=
+language: node_js
+node_js:
+  - node
+install:
+  - ls -l
 script:
-  - cd "$ANDROID_HOME"
-  - mkdir -p "ndk-bundle"
-  - export TERM=dumb
-  - >-
-    curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
-    -O
-  - chmod u+x android-ndk-r10e-linux-x86_64.bin
-  - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
-  - rm android-ndk-r10e-linux-x86_64.bin
-  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
-  - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
-  - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
-  - 'export PATH=$PATH:${ANDROID_NDK_HOME}'
-  - export ANDROID_NDK=`pwd`/android-ndk-r10e
-  - env
+  - pwd
+  - ls -l
   - cd $TRAVIS_BUILD_DIR
-  - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
-  - chmod a+x ~/bin/repo
-  - cd $TRAVIS_BUILD_DIR
-  - 'repo init -u https://github.com/0reo27/travisTest'
-  - repo sync
   - ls -l
   - cd $JAVA_HOME/bin
-  - |
-    sudo keytool -keystore release_signature.jks -genkey -noprompt \
-      -alias alias1 \
-      -dname "CN=mqttserver.ibm.com, OU=ID, O=IBM, L=Hursley, S=Hants, C=GB" \
-      -keystore keystore \
-      -storepass password \
-      -keypass password
-  - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
-  - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
-    time python3.6 build.py --release all ${MAGISK_VER_STRING}
-    ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
-before_deploy:
-  - cd $TRAVIS_BUILD_DIR/Magisk/out
-  - 'ls *.{zip,apk}'
-deploy:
-  provider: releases
-  api_key:
-    secure: >-
-      VeP/gjAFFs+w/nh8TUGLaC7sLVaH0KNgdNl8Q7yWoeayOY282RHiQeGA+5z2ESGlM3ui9vYCMqSupjgu07iy5VonsABZ5X7yAjle0c0ZFbQYgqkLJvTZ3OW0jlehG3rL7g/b/rQ8ZB3SFs4ZHp2kJwIF0I7f2lpZPIVsgL7XDBfBwjCBNPfMJ3A7m2bcR7FniUBFc9uHgbkkBEV4AEzPaTlDsYKUTIIDe94TLALeDrROvyAxZO/MA3vNsZnTNcIAQrY5WJtU4G/vfSDMtv/q5M7yjASvGBw/uwTnCDZjDCAnxvdMu2J1QVne1aYWDkV0+iX4kj/v4NKU855HbRg+tLFCeEaDnThq5hSt/zSf79HT9TMFUUFdlBAbApU0u41A2mFGrh4imdk5ELlbWSQS5yj5EGFyv11uOenAxrysyEtKk3sWXI6/91Zpewr8HkrprXGv4rctiM6sKpdcKIs99nCQf/CPmL1tQlYgACW86yp7JeqAgmr6eD3gdjajynWLog/EbpjZT1XxxqpNV/kyUuy4QTgeB0x/QE9rllUaPB1viHVHSDSpwBA0fvRBQ6s8EOOwYJPjHhGwGhoB1/Degvx8KGU+icXhUgo5AASjVA3DPOwpyPphQNZ9QEGnZjmXV8uTJ1mEzBBX3s+gB6D035+sxGbFBT7iiN2q6krVi00=
-  skip_cleanup: true
-  file_glob: true
-  file: '$TRAVIS_BUILD_DIR/Magisk/out/*.{apk,zip}'
-  overwrite: true
-  on:
-    repo: 0reo27/travisTest
+    sudo keytool -genkey -v -keystore release_signature.jks -keyalg RSA -keysize
+    2048 -validity 10000 -alias my-alias
 notifications:
   email: false

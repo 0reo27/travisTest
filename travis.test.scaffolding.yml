@@ -8,6 +8,8 @@ script:
   - ls -l
   - cd $TRAVIS_BUILD_DIR
   - ls -l
+  - cd $JAVA_HOME/bin
+  - sudo keytool -genkey -v -keystore release_signature.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
 deploy:
   provider: releases
   api_key:

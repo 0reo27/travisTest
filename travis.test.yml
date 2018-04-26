@@ -77,13 +77,8 @@ script:
     # Magisk
     # Prepare releasing
     - cd $JAVA_HOME/bin
-    - |
-      sudo keytool -keystore release_signature.jks -genkey -noprompt \
-        -alias alias1 \
-        -dname "CN=mqttserver.ibm.com, OU=ID, O=IBM, L=Hursley, S=Hants, C=GB" \
-        -keystore keystore \
-        -storepass password \
-        -keypass password
+    - sudo keytool -genkey -v -keystore release_signature.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+    - ls -l
     - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
     - cd $TRAVIS_BUILD_DIR/Magisk
     - >-
