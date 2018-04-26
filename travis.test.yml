@@ -77,9 +77,9 @@ script:
     # Magisk
     # Prepare releasing
     - cd $JAVA_HOME/bin
-    - sudo keytool -genkey -v -keystore release_signature.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
-    - ls -l
+    - printf "1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\n1VykWMeF8w9A\ny\n\n" | sudo keytool -genkey -v -keystore release_signature.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
     - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
+    # Build
     - cd $TRAVIS_BUILD_DIR/Magisk
     - >-
       time python3.6 build.py --release all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
