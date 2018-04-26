@@ -82,6 +82,11 @@ script:
 # Deploy a release to github.
 # travis setup releases - Ruby required.
 # https://docs.travis-ci.com/user/deployment/releases/
+before_deploy:
+  - cd
+  - cd Magisk
+  - export RELEASE_PKG_FILE=$(ls *.{zip,apk})
+  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 deploy:
   provider: releases
   tag_name: $MAGISK_VER_STRING
@@ -89,7 +94,7 @@ deploy:
     secure: >-
       VeP/gjAFFs+w/nh8TUGLaC7sLVaH0KNgdNl8Q7yWoeayOY282RHiQeGA+5z2ESGlM3ui9vYCMqSupjgu07iy5VonsABZ5X7yAjle0c0ZFbQYgqkLJvTZ3OW0jlehG3rL7g/b/rQ8ZB3SFs4ZHp2kJwIF0I7f2lpZPIVsgL7XDBfBwjCBNPfMJ3A7m2bcR7FniUBFc9uHgbkkBEV4AEzPaTlDsYKUTIIDe94TLALeDrROvyAxZO/MA3vNsZnTNcIAQrY5WJtU4G/vfSDMtv/q5M7yjASvGBw/uwTnCDZjDCAnxvdMu2J1QVne1aYWDkV0+iX4kj/v4NKU855HbRg+tLFCeEaDnThq5hSt/zSf79HT9TMFUUFdlBAbApU0u41A2mFGrh4imdk5ELlbWSQS5yj5EGFyv11uOenAxrysyEtKk3sWXI6/91Zpewr8HkrprXGv4rctiM6sKpdcKIs99nCQf/CPmL1tQlYgACW86yp7JeqAgmr6eD3gdjajynWLog/EbpjZT1XxxqpNV/kyUuy4QTgeB0x/QE9rllUaPB1viHVHSDSpwBA0fvRBQ6s8EOOwYJPjHhGwGhoB1/Degvx8KGU+icXhUgo5AASjVA3DPOwpyPphQNZ9QEGnZjmXV8uTJ1mEzBBX3s+gB6D035+sxGbFBT7iiN2q6krVi00=
   file_glob: true
-  file: "*.{.apk,.zip}"
+  file: "${RELEASE_PKG_FILE}"
   overwrite: true
   on:
     repo: 0reo27/travisTest
