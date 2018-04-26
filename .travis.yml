@@ -59,7 +59,9 @@ script:
     -keysize 2048 -validity 10000 -alias my-alias
   - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
   - cd $TRAVIS_BUILD_DIR/Magisk
-  - python3.6 build.py -h
+  - >-
+    python3.6 build.py zip ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} && echo
+    "Magisk has been successfully built"
 before_deploy:
   - cd $TRAVIS_BUILD_DIR/Magisk/out
   - 'ls *.{zip,apk}'

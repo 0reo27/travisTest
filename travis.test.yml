@@ -81,7 +81,9 @@ script:
     - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
     # Build
     - cd $TRAVIS_BUILD_DIR/Magisk
-    - python3.6 build.py -h
+    - >-
+      python3.6 build.py zip ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
+      echo "Magisk has been successfully built"
 
 # Deploy a release to github.
 # travis setup releases - Ruby required.
