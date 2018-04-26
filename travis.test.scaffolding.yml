@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "node"
+install:
+  - ls -l
+script:
+  - cd "$TRAVIS_BUILD_DIR"
+  - ls -l
