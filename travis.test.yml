@@ -75,8 +75,7 @@ script:
     - repo sync
     # Magisk
     # Prepare releasing
-    - cd "$JAVA_HOME"
-    - cd bin
+    - cd $JAVA_HOME/bin
     - |
       sudo keytool -keystore release_signature.jks -genkey -noprompt \
         -alias alias1 \
@@ -84,14 +83,12 @@ script:
         -keystore keystore \
         -storepass password \
         -keypass password
-    - sudo cp -f release_signature.jks $HOME/Magisk
-    - cd $HOME/Magisk
+    - sudo cp -f release_signature.jks $TRAVIS_BUILD_DIR/Magisk
+    - cd $TRAVIS_BUILD_DIR/Magisk
     - >-
       time python3.6 build.py --release all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
       echo "Magisk has been successfully built"
-    - cd
-    - cd Magisk
-    - cd out
+    - cd $TRAVIS_BUILD_DIR/Magisk/out
     # Copy releases to the inbuilt build dir.
     - 'cp -fpRv *.{zip,apk} "$TRAVIS_BUILD_DIR"'
     - cd "$TRAVIS_BUILD_DIR"
