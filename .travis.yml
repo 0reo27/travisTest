@@ -36,9 +36,9 @@ script:
     curl -L
     http://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip -O
   - unzip -oq android-ndk-r16b-linux-x86_64.zip
+  - rm android-ndk-r16b-linux-x86_64.zip
   - cd android-ndk-r16b
   - ls -l
-  - rm android-ndk-r16b-linux-x86_64.zip
   - export ANDROID_NDK_HOME=`pwd`
   - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
   - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
@@ -54,8 +54,8 @@ script:
   - ls -l
   - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
-    time python3.6 build.py --release all ${MAGISK_VER_STRING}
-    ${MAGISK_VER_INTEGER} && echo "Magisk has been successfully built"
+    time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
+    echo "Magisk has been successfully built"
 before_deploy:
   - cd $TRAVIS_BUILD_DIR/Magisk/out
   - 'ls *.{zip,apk}'
