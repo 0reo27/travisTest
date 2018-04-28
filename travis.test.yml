@@ -81,7 +81,7 @@ script:
     - chmod a+x ~/bin/repo
     - cd $TRAVIS_BUILD_DIR
     - 'repo init -u https://github.com/0reo27/travisTest'
-    - repo sync
+    - repo sync --depth=50
     - ls -l
     # Magisk
     # Build
