@@ -80,8 +80,8 @@ script:
     - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
     - chmod a+x ~/bin/repo
     - cd $TRAVIS_BUILD_DIR
-    - 'repo init -u https://github.com/0reo27/travisTest'
-    - repo sync --depth=50
+    - 'repo init -u https://github.com/0reo27/travisTest --depth=50' 
+    - repo sync
     - ls -l
     # Magisk
     # Build
