@@ -76,8 +76,11 @@ script:
     - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
     - chmod a+x ~/bin/repo
     - cd $TRAVIS_BUILD_DIR
-    - 'repo init -u https://github.com/0reo27/travisTest --depth=1' 
-    - repo sync --force-sync
+    # Use git clone instead. Non-existant commits seem to have been corrected. Test on live system first when there are new commits.
+    - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
+    # repo manifest requires an update before usage.
+    # - 'repo init -u https://github.com/0reo27/travisTest --depth=1' 
+    # - repo sync --force-sync
     # Magisk
     # Build
     - cd $TRAVIS_BUILD_DIR/Magisk

@@ -47,8 +47,7 @@ script:
   - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
   - chmod a+x ~/bin/repo
   - cd $TRAVIS_BUILD_DIR
-  - 'repo init -u https://github.com/0reo27/travisTest --depth=1'
-  - repo sync --force-sync
+  - 'git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git'
   - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
     time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
