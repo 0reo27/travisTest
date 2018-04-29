@@ -33,13 +33,11 @@ script:
   - mkdir -p "ndk-bundle"
   - cd ndk-bundle
   - >-
-    curl -L
-    http://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip -O
-  - unzip -oq android-ndk-r16b-linux-x86_64.zip
-  - rm android-ndk-r16b-linux-x86_64.zip
-  - cd android-ndk-r16b
-  - ls -l
-  - export ANDROID_NDK_HOME=`pwd`
+    curl -L http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+    -O
+  - chmod u+x android-ndk-r10e-linux-x86_64.bin
+  - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
+  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
   - export LOCAL_ANDROID_NDK_HOME="$ANDROID_NDK_HOME"
   - export LOCAL_ANDROID_NDK_HOST_PLATFORM="linux-x86_64"
   - 'export PATH=$PATH:${ANDROID_NDK_HOME}'
@@ -49,9 +47,8 @@ script:
   - 'curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo'
   - chmod a+x ~/bin/repo
   - cd $TRAVIS_BUILD_DIR
-  - 'repo init -u https://github.com/0reo27/travisTest --depth=50'
-  - repo sync
-  - ls -l
+  - 'repo init -u https://github.com/0reo27/travisTest --depth=1'
+  - repo sync --force-sync
   - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
     time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
