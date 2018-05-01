@@ -55,6 +55,9 @@ script:
 before_deploy:
   - cd $TRAVIS_BUILD_DIR/Magisk/out
   - 'ls *.{zip,apk}'
+branches:
+  except:
+    - '/[-.0-9]+/'
 deploy:
   provider: releases
   api_key:

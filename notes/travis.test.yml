@@ -97,7 +97,9 @@ before_deploy:
   # Check if files are actually there.
   - cd $TRAVIS_BUILD_DIR/Magisk/out
   - ls *.{zip,apk}
-
+branches:
+  except:
+    - /[-.0-9]+/
 deploy:
   provider: releases
   api_key:
