@@ -42,7 +42,7 @@ env:
     # Magisk requirements and specifics.
     - ANDROID_HOME=/usr/local/android-sdk
     - MAGISK_VER_INTEGER=1650
-    - MAGISK_VER_STRING=16.5
+    - MAGISK_VER_STRING=16.5-25703c1
     - MAGISK_TIME=$(date -u +%H%M%S)
     # Not my secure key.
     - secure: >-
@@ -73,13 +73,13 @@ script:
     # Got the idea from - https://github.com/kantjer/magisk_manifest
     # Uses git clone --recurse-submodules
     # Then manually view .gitmodules for details.
-    - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-    - chmod a+x ~/bin/repo
-    - cd $TRAVIS_BUILD_DIR
+    # - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+    # - chmod a+x ~/bin/repo
+    # - cd $TRAVIS_BUILD_DIR
     # Use git clone instead. Non-existant commits seem to have been corrected. Test on live system first when there are new commits.
     # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
     # Use own repo where 32 bit binary only change is reverted.
-    - git clone --recurse-submodules https://github.com/0reo27/Magisk.git
+    - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
     # repo manifest requires an update before usage.
     # - 'repo init -u https://github.com/0reo27/travisTest --depth=1' 
     # - repo sync --force-sync
