@@ -46,6 +46,8 @@ script:
   - cd $TRAVIS_BUILD_DIR
   - 'git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git'
   - cd $TRAVIS_BUILD_DIR/Magisk
+  - git reset --hard 25703c175070f2a506154add59b9dc409db186fb
+  - cd $TRAVIS_BUILD_DIR/Magisk
   - >-
     time python3.6 build.py all ${MAGISK_VER_STRING} ${MAGISK_VER_INTEGER} &&
     echo "Magisk has been successfully built"
