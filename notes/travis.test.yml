@@ -42,7 +42,7 @@ env:
     # Magisk requirements and specifics.
     - ANDROID_HOME=/usr/local/android-sdk
     - MAGISK_VER_INTEGER=1650
-    - MAGISK_VER_STRING=16.5-c6d2bf5
+    - MAGISK_VER_STRING=16.5-25703c1
     - MAGISK_TIME=$(date -u +%H%M%S)
     # Not my secure key.
     - secure: >-
@@ -83,7 +83,8 @@ script:
     # Test previous commits
     - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
     - cd $TRAVIS_BUILD_DIR/Magisk
-    - git reset --hard c6d2bf577f4f8b181370e53610799d2f67cc6099
+    # Build errors on later versions. Reset to an older commit in the meantime.
+    - git reset --hard 25703c175070f2a506154add59b9dc409db186fb
     # repo manifest requires an update before usage.
     # - 'repo init -u https://github.com/0reo27/travisTest --depth=1' 
     # - repo sync --force-sync
