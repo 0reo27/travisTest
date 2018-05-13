@@ -79,7 +79,11 @@ script:
     # Use git clone instead. Non-existant commits seem to have been corrected. Test on live system first when there are new commits.
     # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
     # Use own repo where 32 bit binary only change is reverted.
+    # - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
+    # Test previous commits
     - git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git
+    - cd $TRAVIS_BUILD_DIR/Magisk
+    - git reset --hard 25703c175070f2a506154add59b9dc409db186fb
     # repo manifest requires an update before usage.
     # - 'repo init -u https://github.com/0reo27/travisTest --depth=1' 
     # - repo sync --force-sync
@@ -92,6 +96,8 @@ script:
 
 # Deploy a release to github.
 # travis setup releases - Ruby required.
+# New Travis CI.com requires travis setup releases --pro
+# That'll ask for GH UN and PW
 # https://docs.travis-ci.com/user/deployment/releases/
 before_deploy:
   # Check if files are actually there.
