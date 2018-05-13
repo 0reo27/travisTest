@@ -14,11 +14,11 @@ sudo: required
 android:
   components:
     # Get the list by running android list sdk --no-ui --all --extended
-    # It also shows up in the raw log when running langeuage is set to Android and the build is ran.
+    # It also shows up in the raw log when running language is set to Android and the build is ran.
     - tools
     - platform-tools
-    - build-tools-26.0.1
-    - android-26
+    - build-tools-27.0.3
+    - android-27
     - extra-android-m2repository
     - addon-google_apis-google-24
 
@@ -42,7 +42,7 @@ env:
     # Magisk requirements and specifics.
     - ANDROID_HOME=/usr/local/android-sdk
     - MAGISK_VER_INTEGER=1650
-    - MAGISK_VER_STRING=16.5-25703c1
+    - MAGISK_VER_STRING=16.5-c9ca42a
     - MAGISK_TIME=$(date -u +%H%M%S)
     # Not my secure key.
     - secure: >-
